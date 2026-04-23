@@ -1,0 +1,53 @@
+replicaCount: 3
+
+image:
+  repository: egorlazutkin/devops-info-service
+  tag: "lab12"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 5000
+  nodePort: 30082
+
+containerPort: 5000
+
+env:
+  HOST: "0.0.0.0"
+  PORT: "5000"
+  DEBUG: "false"
+  RELEASE_VERSION: "lab12-prod"
+
+config:
+  environment: "prod"
+  logLevel: "info"
+  featureVisitsEnabled: true
+  featureMetricsEnabled: true
+
+persistence:
+  enabled: true
+  size: 100Mi
+  storageClass: ""
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "300m"
+    memory: "512Mi"
+
+readinessProbe:
+  path: /health
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+livenessProbe:
+  path: /health
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+secret:
+  username: "user-prod"
+  password: "ProdPass12345"
