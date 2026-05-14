@@ -1,0 +1,25 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "edge-api",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-28",
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"vars": {
+		"APP_NAME": "edge-api",
+		"COURSE_NAME": "DevOps Core Course",
+		"ENVIRONMENT": "production",
+		"APP_VERSION": "lab17-task4"
+	},
+	"kv_namespaces": [
+		{
+			"binding": "SETTINGS",
+			"id": "bb5424b69bb84e0cafe3c5884814c065"
+		}
+	]
+}
